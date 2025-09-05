@@ -12,6 +12,9 @@ def handler(request):
     path = request.get('path', '/')
     method = request.get('method', 'GET')
     
+    # Handle async functions properly
+    import asyncio
+    
     # Handle different routes
     if path == '/' and method == 'GET':
         return {
@@ -51,7 +54,13 @@ def handler(request):
                     print(f"PR #{pr.get('number')} {action} in {repo.get('full_name')}")
                     
                     # Trigger AI review (simplified for now)
-                    await process_pr_review(pr, repo, data)
+                    try:
+                        loop = asyncio.new_event_loop()
+                        asyncio.set_event_loop(loop)
+                        loop.run_until_complete(process_pr_review(pr, repo, data))
+                        loop.close()
+                    except Exception as e:
+                        print(f"Error in async processing: {e}")
             
             return {
                 'statusCode': 200,
