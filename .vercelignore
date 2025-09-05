@@ -1,0 +1,8 @@
+# Ignore everything except what's needed for Vercel
+*
+
+# Only include these files
+!api/
+!requirements-vercel.txt
+!vercel.json
+!README.md
