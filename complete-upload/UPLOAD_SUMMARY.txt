@@ -1,8 +1,0 @@
-AI Code Reviewer Bot - Upload Summary
-==================================================
-
-Total items: 26
-Successfully copied: 26
-Failed: 0
-
-Copied items:
